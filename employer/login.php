@@ -11,14 +11,13 @@ else
 $username=$_POST['username'];
 $password=md5($_POST['password']);
 // Establishing Connection with Server by passing server_name, user_id and password as a parameter
-$connection = mysql_connect("localhost", "root", "","kiosk");
+include('../config.php);
 // To protect MySQL injection for Security purpose
 $username = stripslashes($username);
 $password = stripslashes($password);
 $username = mysql_real_escape_string($username);
 $password = mysql_real_escape_string($password);
 // Selecting Database
-$db = mysql_select_db("kiosk", $connection);
 // SQL query to fetch information of registerd users and finds user match.
 $query = mysql_query("select * from jobs where BINARY password= BINARY'$password' AND BINARY username= BINARY '$username'", $connection);
 $rows = mysql_num_rows($query);
